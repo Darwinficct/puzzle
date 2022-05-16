@@ -97,7 +97,7 @@
                             
                             <div class="row pt-5 pb-0 w-100" style="">
                                 <div class="col-xxl-12">
-                                    <img src="/img/alex.jpeg" class="w-100 rounded">
+                                    <img src="/img/alex.jpg" class="w-100 rounded">
                                 </div>
                             </div>
                         </div>
