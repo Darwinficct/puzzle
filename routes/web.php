@@ -1,7 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\estudianteController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\PuntoController;
+use App\Http\Controllers\PartidaController;
+use App\Models\partida;
+use App\Models\puntaje;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +20,30 @@ use App\Http\Controllers\estudianteController;
 */
 
 Route::get('/', function () {
-    return redirect()->route('estudiante.index');
-}); 
+    $puntos = puntaje::all();
+    return view('home', compact('puntos'));
+})->middleware('auth');
 
-/*Route::get('tablas','estudianteController@index');
-Route::post('estudiante/importar','estudianteController@importar');*/
+Route::get('/register', [RegisterController::class, 'create'])
+    ->middleware('guest')
+    ->name('register.index');
 
-Route::resource('/estudiante',estudianteController::class);
+Route::post('/register', [RegisterController::class, 'store'])
+    ->name('register.store');
+
+
+
+Route::get('/login', [SessionsController::class, 'create'])
+    ->middleware('guest')
+    ->name('login.index');
+
+Route::post('/login', [SessionsController::class, 'store'])
+    ->name('login.store');
+
+Route::get('/logout', [SessionsController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('login.destroy');
+
+Route::resource('puntos', PuntoController::class);
+Route::resource('partida', PartidaController::class);
+
