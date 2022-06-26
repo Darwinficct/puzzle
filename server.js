@@ -3,19 +3,13 @@ const express = require('express');
 const app = express();
 
 
-app.set('port', process.env.PORT || 3000);
+const server = require('http').createServer(app);
 
-//static files
- app.use(express.static(path.join(__dirname, 'public')));
 
-//iniciar servidor
-const server = app.listen(app.get('port'),()=>{
-    console.log('server on port', app.get('port'));
+const io = require('socket.io')(server,{
+    cors: {
+        origin: "*"}
 });
-
-//websocket
-const SocketIO = require('socket.io');
-const io = SocketIO(server);
 
 io.on('connection', (socket) => {
     console.log('connection');
