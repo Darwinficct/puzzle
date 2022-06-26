@@ -1,7 +1,8 @@
 
-let ip_address = '127.0.0.1';
-let socket_port = '3000';
-let socket = io(ip_address + ':' + socket_port);
+//let ip_address = '127.0.0.1';
+//let socket_port = '3000';
+//let socket = io(ip_address + ':' + socket_port);
+const socket = io();
 var correctos = 0;
 var incorrectos = 0;
 var guardar= {};
