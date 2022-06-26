@@ -8,7 +8,9 @@ const server = require('http').createServer(app);
 
 const io = require('socket.io')(server,{
     cors: {
-        origin: "*"}
+        origin: "*",
+        credentials: true
+    }
 });
 
 io.on('connection', (socket) => {
